@@ -20,6 +20,7 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
 import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.AmazonSQSAsync;
 
 @Configuration
 public class SqsPetQueueSendRoute {
@@ -57,7 +58,7 @@ public class SqsPetQueueSendRoute {
     
     @Bean
     public QueueMessagingTemplate queueMessagingTemplate() {
-        return new QueueMessagingTemplate(this.amazonSqs);
+        return new QueueMessagingTemplate((AmazonSQSAsync) this.amazonSqs);
     }
 
     @Bean
